@@ -1,0 +1,21 @@
+* {
+  background: unset;
+  border: unset;
+  border-radius: unset;
+  box-sizing: border-box;
+  color: inherit;
+  font: inherit;
+  margin: unset;
+  padding: unset;
+
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
+
+:root {
+  font-size: 62.5%;
+  min-block-size: 100%;
+  overflow-x: clip;
+}
