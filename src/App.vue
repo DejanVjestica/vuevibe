@@ -37,10 +37,5 @@ header {
 main {
   display: grid;
   grid-template-columns: var(--grid-template-columns);
-
-  > * {
-    grid-column: content;
-    max-width: var(--content-max-width);
-  }
 }
 </style>

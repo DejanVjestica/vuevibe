@@ -63,7 +63,7 @@
   }
 
   @media (min-width: 1260px) {
-    --content-max-width: 960px;
+    --content-max-width: 1180px;
     --grid-column-offset-S: 4;
     --grid-column-offset-M: 3;
 
