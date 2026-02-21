@@ -4,4 +4,8 @@
   /></a>
 </template>
 
-<style scoped></style>
+<style scoped>
+a {
+  display: inline-flex;
+}
+</style>

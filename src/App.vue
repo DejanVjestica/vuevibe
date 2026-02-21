@@ -1,47 +1,46 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import MainStage from './components/MainStage.vue'
+import SiteLogo from './components/SiteLogo.vue'
+import SiteNav from './components/SiteNav.vue'
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+    <div>
+      <SiteLogo />
+      <SiteNav />
     </div>
   </header>
 
   <main>
-    <TheWelcome />
+    <MainStage />
   </main>
 </template>
 
 <style scoped>
 header {
-  line-height: 1.5;
+  background-color: var(--color-background-3);
+  color: var(--color-paragraph-2);
+  display: grid;
+  grid-template-columns: var(--grid-template-columns);
+  grid-template-rows: 6.7rem;
+
+  > div {
+    align-items: center;
+    display: flex;
+    grid-column: content;
+    justify-content: space-between;
+    max-width: var(--content-max-width);
+  }
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+main {
+  display: grid;
+  grid-template-columns: var(--grid-template-columns);
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+  > * {
+    grid-column: content;
+    max-width: var(--content-max-width);
   }
 }
 </style>

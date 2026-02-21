@@ -41,6 +41,43 @@
   --link: 1.3rem;
 }
 
+:root {
+  --viewport-body-max-width: 1920px;
+  --content-max-width: 90vw;
+
+  --grid-column-width: calc(var(--content-max-width) / 24);
+  --grid-min-column-width: min(var(--grid-column-width), 100% / 24);
+
+  --grid-content-columns: [content-start content-m-start content-s-start]
+    repeat(24, var(--grid-min-column-width)) [content-m-end content-s-end content-end];
+
+  @media (min-width: 768px) {
+    --grid-column-offset-S: 3;
+    --grid-column-offset-M: 1;
+
+    --grid-content-columns: [content-start] var(--grid-min-column-width) [content-m-start]
+      repeat(2, var(--grid-min-column-width)) [content-s-start]
+      repeat(18, var(--grid-min-column-width)) [content-s-end]
+      repeat(2, var(--grid-min-column-width)) [content-m-end] var(--grid-min-column-width)
+      [content-end];
+  }
+
+  @media (min-width: 1260px) {
+    --content-max-width: 960px;
+    --grid-column-offset-S: 4;
+    --grid-column-offset-M: 3;
+
+    --grid-content-columns: [content-start] var(--grid-min-column-width)
+      repeat(2, var(--grid-min-column-width)) [content-m-start] var(--grid-min-column-width)
+      [content-s-start] repeat(16, var(--grid-min-column-width)) [content-s-end]
+      var(--grid-min-column-width) [content-m-end] repeat(2, var(--grid-min-column-width))
+      var(--grid-min-column-width) [content-end];
+  }
+
+  --grid-template-columns: [full-start] 1fr [oversize-start] 1fr var(--grid-content-columns) 1fr
+    [oversize-end] 1fr [full-end];
+}
+
 *,
 *::before,
 *::after {

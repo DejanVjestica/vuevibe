@@ -9,9 +9,16 @@
 
 <style scoped>
 nav {
+  display: flex;
+  gap: 3.7rem;
+  align-items: center;
+
   ul {
-    display: flex;
-    gap: 3.7rem;
+    display: contents;
+
+    li {
+      display: contents;
+    }
   }
 }
 </style>
