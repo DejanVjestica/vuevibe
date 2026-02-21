@@ -19,3 +19,9 @@
   min-block-size: 100%;
   overflow-x: clip;
 }
+
+menu,
+ol,
+ul {
+  list-style: none;
+}

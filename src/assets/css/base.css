@@ -13,7 +13,7 @@
 
   --color-accent: var(--vv-accent);
   --color-background-1: var(--vv-light-1);
-  --color-background-2: var(--vv-dark);
+  --color-background-2: var(--vv-green);
   --color-background-3: var(--vv-dark);
 
   --color-paragraph-1: var(--vv-black);
@@ -23,9 +23,6 @@
   --color-display-2: var(--vv-light);
   --color-display-3: var(--vv-white);
   --color-display-4: var(--vv-black);
-
-  --section-gap: 160px;
-  --contentMaxWidth: 960px;
 
   --display-1: 30rem;
   --display-2: 12rem;
