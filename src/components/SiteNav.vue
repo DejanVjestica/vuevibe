@@ -1,8 +1,8 @@
 <template>
   <nav class="nav">
     <ul>
-      <li><a href="#/Services">Services</a></li>
-      <li><a href="#/Consult">Schedule a Consult</a></li>
+      <li><RouterLink to="/Services">Services</RouterLink></li>
+      <li><RouterLink to="/Consult">Schedule a Consult</RouterLink></li>
     </ul>
   </nav>
 </template>

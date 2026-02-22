@@ -1,27 +1,6 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
 import SiteLogo from './components/SiteLogo.vue'
 import SiteNav from './components/SiteNav.vue'
-import NotFoundView from './views/NotFoundView.vue'
-import ServicesView from './views/ServicesView.vue'
-import Home from './views/HomeView.vue'
-import ConsultView from './views/ConsultView.vue'
-
-const routes = {
-  '/': Home,
-  '/Services': ServicesView,
-  '/Consult': ConsultView,
-} as const
-
-const currentPath = ref(window.location.hash)
-window.addEventListener('hashchange', () => {
-  currentPath.value = window.location.hash
-})
-
-const currentView = computed(() => {
-  const path = (currentPath.value.slice(1) || '/') as '/' | '/Services'
-  return routes[path] || NotFoundView
-})
 </script>
 
 <template>
@@ -33,7 +12,7 @@ const currentView = computed(() => {
   </header>
 
   <main class="main">
-    <component :is="currentView" />
+    <RouterView />
   </main>
 </template>
 

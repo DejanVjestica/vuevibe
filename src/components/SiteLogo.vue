@@ -1,7 +1,7 @@
 <template>
-  <a class="logo" href="#/" aria-label="vuevibe logo to home page"
+  <RouterLink class="logo" to="/"
     ><img src="../assets/images/logo.png" width="33" height="24"
-  /></a>
+  /></RouterLink>
 </template>
 
 <style scoped>
