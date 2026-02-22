@@ -1,5 +1,6 @@
-@import './reset.css';
-@import './base.css';
+@layer reset, base;
+@import url('./reset.css') layer(reset);
+@import url('./base.css') layer(base);
 
 a {
   cursor: pointer;

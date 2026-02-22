@@ -45,6 +45,10 @@
   --viewport-body-max-width: 1920px;
   --content-max-width: 90vw;
 
+  @media (min-width: 1260px) {
+    --content-max-width: 1180px;
+  }
+
   --grid-column-width: calc(var(--content-max-width) / 24);
   --grid-min-column-width: min(var(--grid-column-width), 100% / 24);
 

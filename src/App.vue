@@ -37,7 +37,7 @@ const currentView = computed(() => {
   </main>
 </template>
 
-<style scoped>
+<style>
 .header {
   background-color: var(--color-background-3);
   color: var(--color-paragraph-2);
@@ -57,5 +57,9 @@ const currentView = computed(() => {
 .main {
   display: grid;
   grid-template-columns: var(--grid-template-columns);
+
+  > * {
+    grid-column: content;
+  }
 }
 </style>
