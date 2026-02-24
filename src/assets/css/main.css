@@ -2,6 +2,15 @@
 @import url('./reset.css') layer(reset);
 @import url('./base.css') layer(base);
 
+:is(header, main) {
+  display: grid;
+  grid-template-columns: var(--grid-template-columns);
+
+  > * {
+    grid-column: content;
+  }
+}
+
 a {
   cursor: pointer;
   text-decoration: none;

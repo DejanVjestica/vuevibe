@@ -5,9 +5,10 @@ const props = defineProps<{
   heroBg: [string, string]
 }>()
 const imageSet = computed(() => {
+  const [oneX, twoX] = props.heroBg
   return `image-set(
-  url(${props.heroBg[0]}) 1x,
-  url(${props.heroBg[1]}) 2x
+  url(${oneX}) 1x,
+  url(${twoX}) 2x
 )`
 })
 </script>
@@ -21,25 +22,23 @@ const imageSet = computed(() => {
 
 <style scoped>
 .page-hero {
-  align-items: end;
   background-image: var(--hero-bg);
   background-position-x: center;
   background-repeat: no-repeat;
   background-size: cover;
   color: var(--color-display-1);
-  display: flex;
-  flex-direction: row;
+  display: grid;
   grid-column: full;
-  justify-content: center;
-  min-height: 80rem;
+  grid-template-columns: subgrid;
+  height: 60rem;
 
   > div {
-    width: var(--content-max-width);
+    grid-column: content;
     margin-block-end: 5rem;
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 5%;
     text-wrap: pretty;
+    align-content: flex-end;
+    display: grid;
+    grid-template-columns: [col-start] 1fr 1fr [col-end];
   }
 }
 </style>

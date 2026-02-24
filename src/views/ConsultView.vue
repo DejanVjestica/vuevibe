@@ -1,17 +1,18 @@
 <script setup lang="ts">
-import PageHero from '../components/PageHero.vue'
+import TheHero from '../components/TheHero.vue'
 import hero1x from '@/assets/images/consult-hero@1x.jpg'
 import hero2x from '@/assets/images/consult-hero@1x.jpg'
 </script>
 <template>
-  <PageHero :heroBg="[hero1x, hero2x]">
+  <TheHero :heroBg="[hero1x, hero2x]">
     <h1 class="heading-h1">Let us help you</h1>
-  </PageHero>
+  </TheHero>
   <h1>schedule-a-consult</h1>
 </template>
 <style scoped>
 .heading-h1 {
   font-size: 4.2rem;
+  grid-column: col;
 }
 @media (min-width: 768px) {
   .heading-h1 {

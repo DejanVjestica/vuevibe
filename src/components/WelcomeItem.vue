@@ -7,7 +7,7 @@ interface Todo {
 }
 
 import { onMounted, ref } from 'vue'
-import PageHero from '../components/PageHero.vue'
+import PageHero from './TheHero.vue'
 import hero1x from '@/assets/images/consult-hero@1x.jpg'
 import hero2x from '@/assets/images/consult-hero@1x.jpg'
 const newTask = ref(['test'])
