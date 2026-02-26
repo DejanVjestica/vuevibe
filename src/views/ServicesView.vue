@@ -9,11 +9,5 @@ import hero2x from '@/assets/images/services-hero@1x.jpg'
       At Jones & Brown Legal, we are committed to exceptional service and successful outcomes with:
     </h1>
   </TheHero>
-  <h1>Services</h1>
+  <h2>Services</h2>
 </template>
-
-<style scoped>
-.heading-h1 {
-  font-size: var(--header-1);
-}
-</style>

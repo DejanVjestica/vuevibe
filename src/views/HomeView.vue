@@ -11,35 +11,23 @@ import hero2x from '@/assets/images/hero@2x.jpg'
       We've been serving the Los Angeles area with expert legal counsel since 1976.
     </h3>
   </TheHero>
-  <h1>Home</h1>
+  <h2>Home</h2>
 </template>
 <style scoped>
 .heading-h1 {
-  font-size: 4.2rem;
   grid-column: col;
+  font: var(--hero-display);
 }
 
 .heading-h2 {
-  font-size: var(--header-1);
   grid-column: col;
 }
 
 .heading-h3 {
-  font-size: var(--header-1s);
   grid-column: col;
 }
 
-@media (min-width: 768px) {
-  .heading-h1 {
-    font-size: var(--display-3);
-  }
-}
-
 @media (min-width: 1260px) {
-  .heading-h1 {
-    font-size: var(--hero-display);
-  }
-
   .heading-h2 {
     grid-column: initial;
   }
