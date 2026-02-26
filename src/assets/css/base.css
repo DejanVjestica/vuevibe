@@ -125,7 +125,7 @@ Usage: font: var( --display-1);
   --header3: var(--header-3) / 1.1 var(--Font-family);
 
   --paragraph1: var(--paragraph-1) / 1.1 var(--Font-family);
-  --paragrap2: var(--paragraph-2) / 1.2 var(--Font-family);
+  --paragraph2: var(--paragraph-2) / 1.2 var(--Font-family);
   --paragraph3: var(--paragraph-3) / 1.25 var(--Font-family);
 
   --hero-display: var(--hero-display-1) / 1.2 var(--Font-family);
