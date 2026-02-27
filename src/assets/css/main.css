@@ -19,7 +19,7 @@ body {
   overflow-y: clip;
 
   > div {
-    > :is(header, main) {
+    > :is(header, main, footer) {
       display: grid;
       grid-template-columns: var(--grid-template-columns);
 

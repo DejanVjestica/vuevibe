@@ -12,7 +12,6 @@ import AllUsers from '@/components/AllUsers.vue'
       We've been serving the Los Angeles area with expert legal counsel since 1976.
     </h3>
   </TheHero>
-  <h2>List of Users</h2>
   <AllUsers></AllUsers>
 </template>
 <style scoped>
