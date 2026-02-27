@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import TheHero from '../components/TheHero.vue'
+import TheHero from '@/components/TheHero.vue'
 import hero1x from '@/assets/images/hero@1x.jpg'
 import hero2x from '@/assets/images/hero@2x.jpg'
+import AllUsers from '@/components/AllUsers.vue'
 </script>
 <template>
   <TheHero :heroBg="[hero1x, hero2x]">
@@ -11,7 +12,8 @@ import hero2x from '@/assets/images/hero@2x.jpg'
       We've been serving the Los Angeles area with expert legal counsel since 1976.
     </h3>
   </TheHero>
-  <h2>Home</h2>
+  <h2>List of Users</h2>
+  <AllUsers></AllUsers>
 </template>
 <style scoped>
 .heading-h1 {
