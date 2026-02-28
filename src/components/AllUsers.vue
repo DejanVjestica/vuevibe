@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { onMounted, ref, watch, computed } from 'vue'
+import { onMounted, ref, watch, computed, onUnmounted } from 'vue'
 import type { User } from '../types/user'
 import UserCard from './UserCard.vue'
 import { useFetch } from '@/composables/useFetch'
+import { useDebounce } from '@/composables/useDebounce'
 
 const queryParams = ref({
   name_like: '',
@@ -13,19 +14,25 @@ const {
   loading,
   error,
   execute,
+  abort,
 } = useFetch<User[]>('https://jsonplaceholder.typicode.com/users', { params: queryParams })
 
 const userLength = computed(() => users.value?.length.toString() ?? 0)
+const debouncedExecute = useDebounce(execute, 500)
 
 watch(
   () => queryParams.value.name_like,
   () => {
-    execute()
+    debouncedExecute()
   },
 )
 
-onMounted(async () => {
+onMounted(() => {
   execute()
+})
+
+onUnmounted(() => {
+  abort()
 })
 </script>
 <template>

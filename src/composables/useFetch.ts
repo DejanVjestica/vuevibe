@@ -8,7 +8,18 @@ export function useFetch<T>(
   const loading = ref(false)
   const error = ref<string | null>(null)
 
+  const controller = ref<AbortController | null>(null)
+
+  const abort = () => {
+    if (controller.value) {
+      controller.value.abort()
+    }
+  }
+
   const execute = async () => {
+    abort()
+    controller.value = new AbortController()
+
     loading.value = true
     error.value = null
 
@@ -19,7 +30,9 @@ export function useFetch<T>(
     }
 
     try {
-      const response = await fetch(url.toString())
+      const response = await fetch(url.toString(), {
+        signal: controller.value.signal,
+      })
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`)
@@ -27,11 +40,18 @@ export function useFetch<T>(
 
       data.value = (await response.json()) as T
     } catch (err) {
+      if (err instanceof Error) {
+        if (err.name === 'AbortError') {
+          // The request was cancelled on purpose (user typed fast or left page)
+          console.log('Fetch aborted: moving on to the next request.')
+          return // Exit the function without setting the error state
+        }
+      }
       error.value = err instanceof Error ? err.message : 'An unknown error occurred'
     } finally {
       loading.value = false
     }
   }
 
-  return { data, error, loading, execute }
+  return { data, error, loading, execute, abort }
 }
