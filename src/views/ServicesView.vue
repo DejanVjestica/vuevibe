@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TheHero from '../components/TheHero.vue'
+import TheHero from '../components/ui/TheHero.vue'
 import hero1x from '@/assets/images/services-hero@1x.jpg'
 import hero2x from '@/assets/images/services-hero@1x.jpg'
 </script>
