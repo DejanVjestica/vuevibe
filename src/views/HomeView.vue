@@ -2,7 +2,7 @@
 import TheHero from '@/components/ui/TheHero.vue'
 import hero1x from '@/assets/images/hero@1x.jpg'
 import hero2x from '@/assets/images/hero@2x.jpg'
-import AllUsers from '@/components/users/AllUsers.vue'
+import UserList from '@/components/users/UserList.vue'
 </script>
 <template>
   <TheHero :heroBg="[hero1x, hero2x]">
@@ -12,7 +12,7 @@ import AllUsers from '@/components/users/AllUsers.vue'
       We've been serving the Los Angeles area with expert legal counsel since 1976.
     </h3>
   </TheHero>
-  <AllUsers></AllUsers>
+  <UserList></UserList>
 </template>
 <style scoped>
 .heading-h1 {
