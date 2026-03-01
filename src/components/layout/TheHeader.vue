@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TheLogo from './TheLogo.vue'
+import TheLogo from '../ui/TheLogo.vue'
 import TheNavbar from './TheNavbar.vue'
 </script>
 <template>
