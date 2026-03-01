@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import { useForm } from '@/composables/useForm'
 
-interface QueryParams {
+interface Filters {
   name_like: string
 }
 
-const defaultValue = {
-  name_like: '',
-}
-const modelValue = defineModel<QueryParams>()
+const modelValue = defineModel<Filters>()
 
-const { form, handleSubmit } = useForm<QueryParams>(defaultValue, modelValue)
+const { form, handleSubmit } = useForm<Filters>(
+  {
+    name_like: '',
+  },
+  modelValue,
+)
 </script>
 
 <template>
