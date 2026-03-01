@@ -4,7 +4,7 @@ import type { User } from '../../types/user'
 import UserCard from './UserCard.vue'
 import { useFetch } from '@/composables/useFetch'
 import { useDebounce } from '@/composables/useDebounce'
-import SearchUsersForm from './SearchUsersForm.vue'
+import SearchUsersForm from './UserSearchForm.vue'
 
 const apiURL = `${import.meta.env.VITE_API_BASE_URL}/users`
 

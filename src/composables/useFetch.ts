@@ -42,9 +42,8 @@ export function useFetch<T>(
     } catch (err) {
       if (err instanceof Error) {
         if (err.name === 'AbortError') {
-          // The request was cancelled on purpose (user typed fast or left page)
           console.log('Fetch aborted: moving on to the next request.')
-          return // Exit the function without setting the error state
+          return
         }
       }
       error.value = err instanceof Error ? err.message : 'An unknown error occurred'
