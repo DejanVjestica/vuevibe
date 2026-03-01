@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { onMounted, ref, watch, computed, onUnmounted } from 'vue'
-import type { User } from '../types/user'
+import { onMounted, ref, watch, onUnmounted, computed } from 'vue'
+import type { User } from '../../types/user'
 import UserCard from './UserCard.vue'
 import { useFetch } from '@/composables/useFetch'
 import { useDebounce } from '@/composables/useDebounce'
+import SearchUsersForm from './SearchUsersForm.vue'
 
 const apiURL = `${import.meta.env.VITE_API_BASE_URL}/users`
 
@@ -40,16 +41,10 @@ onUnmounted(() => {
 <template>
   <section class="all-users" aria-labelledby="Users">
     <h2 id="Users">User overview</h2>
-    <form @submit.prevent>
-      <label for="user-search">Number of users: {{ userLength }}</label>
-      <input
-        id="user-search"
-        name="query"
-        type="search"
-        v-model="queryParams.name_like"
-        autocomplete="off"
-      />
-    </form>
+    <p>there is {{ userLength }} users</p>
+
+    <SearchUsersForm v-model="queryParams"></SearchUsersForm>
+
     <p v-if="loading">... Loading</p>
     <p v-else-if="error">{{ error }}</p>
     <ul v-else>
@@ -62,27 +57,7 @@ onUnmounted(() => {
 <style scoped>
 .all-users {
   > h2 {
-    margin-block-end: 3rem;
-  }
-  > form {
-    display: flex;
-    gap: 1rem;
-    margin-block-end: 3rem;
-    flex-wrap: wrap;
-
-    > label {
-      flex: 100%;
-    }
-
-    input {
-      padding: 1rem;
-      border: 0.1rem solid var(--vv-green);
-    }
-
-    > button {
-      padding: 1rem;
-      border: 0.1rem solid var(--vv-green);
-    }
+    margin-block-end: 1rem;
   }
 
   > ul {
