@@ -5,6 +5,8 @@ import UserCard from './UserCard.vue'
 import { useFetch } from '@/composables/useFetch'
 import { useDebounce } from '@/composables/useDebounce'
 
+const apiURL = `${import.meta.env.VITE_API_BASE_URL}/users`
+
 const queryParams = ref({
   name_like: '',
 })
@@ -15,7 +17,7 @@ const {
   error,
   execute,
   abort,
-} = useFetch<User[]>('https://jsonplaceholder.typicode.com/users', { params: queryParams })
+} = useFetch<User[]>(apiURL, { params: queryParams })
 
 const userLength = computed(() => users.value?.length.toString() ?? 0)
 const debouncedExecute = useDebounce(execute, 500)
