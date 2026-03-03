@@ -10,6 +10,7 @@
 
   --vv-green: #0d1f08;
   --vv-dark: #1f0808;
+  --vv-danger: #ad0000;
 
   --color-accent: var(--vv-accent);
   --color-background-1: var(--vv-light-1);
