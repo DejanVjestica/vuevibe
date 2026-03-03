@@ -25,7 +25,7 @@ const { formData, errors, handleSubmit } = useForm<Credentials>(
   (values: Credentials) => {
     const errs: Partial<Record<keyof Credentials, string>> = {}
     if (!values.email) errs.email = 'Email is required'
-    if (values.password.length < 6) errs.password = 'Password is too short! Min 6 Caracters'
+    if (values.password.length < 6) errs.password = 'Password is too short! Min 6 Characters'
     return errs
   },
   () => emit('submitForm'),
@@ -42,7 +42,7 @@ const { formData, errors, handleSubmit } = useForm<Credentials>(
         autocomplete="off"
         v-model="formData.email"
       />
-      <span v-if="errors.email">{{ errors.email }}</span>
+      <span v-if="errors.email" role="alert">{{ errors.email }}</span>
     </div>
     <div>
       <label for="user-password">Password</label>
@@ -53,7 +53,7 @@ const { formData, errors, handleSubmit } = useForm<Credentials>(
         autocomplete="off"
         v-model="formData.password"
       />
-      <span v-if="errors.password">{{ errors.password }}</span>
+      <span v-if="errors.password" role="alert">{{ errors.password }}</span>
     </div>
     <button type="submit" :disabled="isLoading">
       {{ isLoading ? 'Processing...' : 'Submit' }}

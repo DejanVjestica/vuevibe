@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import UserForm from '../components/UserForm.vue'
+import LoginRegisterForm from '../components/LoginRegisterForm.vue'
 import { useAuthStore } from '@/features/auth/store/authStore'
-import router from '@/router/router'
+
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 const authStore = useAuthStore()
 
@@ -22,7 +24,11 @@ const handleSubmit = async () => {
 <template>
   <section class="register" aria-labelledby="register-title">
     <h2 id="register-title">Please Register</h2>
-    <UserForm v-model="credentials" :is-loading="authStore.loading" @submitForm="handleSubmit" />
+    <LoginRegisterForm
+      v-model="credentials"
+      :is-loading="authStore.loading"
+      @submitForm="handleSubmit"
+    />
 
     <p v-if="authStore.error" class="error" role="alert">{{ authStore.error }}</p>
     <p v-if="authStore.loading" class="loading">Creating your account...</p>
