@@ -1,8 +1,29 @@
+<script setup lang="ts">
+import { useAuthStore } from '@/features/auth/store/authStore'
+
+const authStore = useAuthStore()
+
+const handleLogout = async () => {
+  try {
+    await authStore.logout()
+  } catch (error) {
+    console.error('Logout failed:', error)
+  }
+}
+</script>
+
 <template>
   <nav class="nav">
-    <ul>
-      <li><RouterLink to="/Services">Services</RouterLink></li>
-      <li><RouterLink to="/Consult">Schedule a Consult</RouterLink></li>
+    <ul v-if="authStore.isInitialised">
+      <li><RouterLink to="/services">Services</RouterLink></li>
+      <li><RouterLink to="/consult">Schedule a Consult</RouterLink></li>
+      <li v-if="authStore.user">
+        <span>{{ authStore.user.email }}</span>
+        <button @click="handleLogout" class="logout-btn">Logout</button>
+      </li>
+      <li v-else>
+        <RouterLink to="/auth/login">Login or register</RouterLink>
+      </li>
     </ul>
   </nav>
 </template>
