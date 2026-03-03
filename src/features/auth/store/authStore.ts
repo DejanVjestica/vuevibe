@@ -38,13 +38,16 @@ export const useAuthStore = defineStore('auth', () => {
       if (err instanceof FirebaseError) {
         switch (err.code) {
           case 'auth/email-already-in-use':
-            error.value = 'This email is already registered.'
+            error.value = `This email is already registered.`
             break
           case 'auth/weak-password':
-            error.value = 'Password should be at least 6 characters test.'
+            error.value = `Password should be at least 6 characters test.`
+            break
+          case 'auth/invalid-email':
+            error.value = `This email is invalid.`
             break
           default:
-            error.value = 'An error occurred during registration.'
+            error.value = `An error occurred during registration.`
         }
       }
     } finally {

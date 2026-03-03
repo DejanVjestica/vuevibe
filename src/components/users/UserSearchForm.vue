@@ -7,7 +7,7 @@ interface Filters {
 
 const modelValue = defineModel<Filters>()
 
-const { form, handleSubmit } = useForm<Filters>(
+const { formData, handleSubmit } = useForm<Filters>(
   {
     name_like: '',
   },
@@ -24,7 +24,7 @@ const { form, handleSubmit } = useForm<Filters>(
         name="queryName"
         type="search"
         autocomplete="off"
-        v-model="form.name_like"
+        v-model="formData.name_like"
       />
     </div>
     <button type="submit">Submit</button>

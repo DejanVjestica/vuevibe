@@ -22,11 +22,7 @@ const handleSubmit = async () => {
 <template>
   <section class="register" aria-labelledby="register-title">
     <h2 id="register-title">Please Register</h2>
-    <UserForm
-      v-model="credentials"
-      @submit.prevent="handleSubmit"
-      :is-loading="authStore.loading"
-    />
+    <UserForm v-model="credentials" :is-loading="authStore.loading" @submitForm="handleSubmit" />
 
     <p v-if="authStore.error" class="error" role="alert">{{ authStore.error }}</p>
     <p v-if="authStore.loading" class="loading">Creating your account...</p>

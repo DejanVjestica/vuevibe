@@ -1,13 +1,19 @@
 import { ref, watch, type ModelRef } from 'vue'
 
-export function useForm<T>(defaultValue: T, modelValue?: ModelRef<T | null | undefined>) {
-  const form = ref<T>(clone(modelValue?.value) || defaultValue)
+export function useForm<T>(
+  defaultValue: T,
+  modelValue?: ModelRef<T | null | undefined>,
+  validate?: (values: T) => Partial<Record<keyof T, string>>,
+  emitSubmit?: () => void | Promise<void>,
+) {
+  const formData = ref<T>(clone(modelValue?.value) || defaultValue)
+  const errors = ref<Partial<Record<keyof T, string>>>({})
 
   if (modelValue) {
     watch(
       modelValue,
       () => {
-        form.value = clone(modelValue.value)
+        formData.value = clone(modelValue.value)
       },
       { deep: true },
     )
@@ -17,13 +23,29 @@ export function useForm<T>(defaultValue: T, modelValue?: ModelRef<T | null | und
     return JSON.parse(JSON.stringify(obj))
   }
 
-  function handleSubmit() {
+  const handleSubmit = async () => {
+    errors.value = {}
+
+    if (validate) {
+      const isValid = await validate(formData.value)
+      errors.value = isValid
+
+      if (Object.keys(isValid).length > 0) {
+        return
+      }
+    }
+
     if (!modelValue) return
-    modelValue.value = clone(form.value)
+    modelValue.value = clone(formData.value)
+
+    if (emitSubmit) {
+      emitSubmit()
+    }
   }
 
   return {
-    form,
+    formData,
+    errors,
     handleSubmit,
   }
 }
