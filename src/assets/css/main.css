@@ -80,6 +80,10 @@ form {
     display: grid;
     gap: 1rem;
 
+    > label {
+      font: var(--paragraph3);
+    }
+
     > input {
       padding: 1rem;
       border: 0.1rem solid var(--vv-green);
