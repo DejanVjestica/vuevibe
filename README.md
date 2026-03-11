@@ -1,6 +1,27 @@
-# vuevibe
+# VueVibe
 
-https://vuevibe.vercel.app/
+![Vercel](https://img.shields.io/badge/deployed-vercel-black)
+![Vue](https://img.shields.io/badge/vue-3-42b883)
+![Firebase](https://img.shields.io/badge/auth-firebase-orange)
+![License](https://img.shields.io/badge/license-MIT-blue)
+
+> A modern Vue.js 3 application with Firebase Authentication and automated CI/CD via Vercel.
+
+🔗 [Live Demo](https://vuevibe.vercel.app/)
+
+---
+
+## Table of Contents
+
+- [Project Setup](#project-setup)
+- [Tech Stack & Tooling](#tech-stack--tooling)
+- [Environment Variables](#environment-variables)
+- [Deployment & CI/CD](#deployment--cicd)
+- [Firebase Authentication](#firebase-authentication)
+- [Roadmap](#roadmap)
+- [License](#license)
+
+---
 
 ## Project Setup
 
@@ -26,47 +47,63 @@ pnpm build
 pnpm lint
 ```
 
-### Tech Stack & Tooling
+---
 
-Framework: Vue 3 (Composition API)
+## Tech Stack & Tooling
 
-Build Tool: Vite
+| Category      | Tool                    |
+| ------------- | ----------------------- |
+| Framework     | Vue 3 (Composition API) |
+| Build Tool    | Vite                    |
+| Store         | Pinia                   |
+| Router        | Vue Router              |
+| Auth          | Firebase                |
+| Linting       | ESLint + Prettier       |
+| Type Checking | vue-tsc                 |
+| Deployment    | Vercel                  |
 
-Store: Pinia
+---
 
-Router: Vue Router
+## Environment Variables
 
-Linting: ESLint + Prettier
+Create a `.env` file in the root of the project:
 
-Type Checking: vue-tsc
+```sh
+VITE_API_BASE_URL=
 
-### Deployment & CI/CD
+VITE_FIREBASE_API_KEY=
+VITE_FIREBASE_AUTH_DOMAIN=
+VITE_FIREBASE_PROJECT_ID=
+VITE_FIREBASE_STORAGE_BUCKET=
+VITE_FIREBASE_MESSAGING_SENDER_ID=
+VITE_FIREBASE_APP_ID=
+VITE_FIREBASE_MEASUREMENT_ID=
+```
 
-Vercel Integration
-The project is optimized for Vercel with a fully automated CI/CD pipeline:
+---
 
-Production Triggers: Merges to the main branch trigger a production build and deployment.
+## Deployment & CI/CD
+
+The project is optimized for Vercel with a fully automated CI/CD pipeline. Merges to the `main` branch trigger a production build and deployment.
 
 ```mermaid
 flowchart TD
-    Dev[Developer] -->|git push| GH[GitHub Repository]
+    Dev[👨‍💻 Developer] -->|git push| GH[GitHub Repository]
     GH -->|triggers| VC[Vercel CI/CD]
     VC -->|build success| APP[🌐 Live Vue.js 3 App on Vercel]
     VC -->|build fails| FAIL[❌ Build Failed]
     FAIL -->|notify| Dev
-
 ```
 
-### Firebase Authentication
+---
 
-This project uses Firebase Auth for secure user management.
+## Firebase Authentication
 
-Session Persistence: Configured to maintain user state across browser refreshes using onAuthStateChanged.
+This project uses Firebase Auth for secure user management. Session state is persisted across browser refreshes using `onAuthStateChanged`.
 
 ```mermaid
 flowchart TD
-    Data[Data source JSONPlaceholder] -->|Fetch| Site[🌐 Live Website Vue]
-    Site -->|Fetch| Data
+    User[👤 User] --> Site[🌐 Live Website]
 
     Site --> Marketing[📢 Marketing Pages]
     Site --> Protected[🔒 Protected Pages]
@@ -77,9 +114,35 @@ flowchart TD
     Login --> FB[(Firebase Auth)]
     Register -->|Verify Email| FB
 
-    FB -->|Success| JWT[🎫 JWT Token]
+    FB -->|Success| JWT[🎫 JWT Token 1hr]
     FB -->|Fail| Login
 
     JWT --> Protected
-
+    JWT -->|expires| RT[🔄 Refresh Token]
+    RT -->|silent refresh| JWT
 ```
+
+---
+
+## Roadmap
+
+- [x] Firebase Authentication
+- [x] CI/CD with Vercel
+- [x] JSONPlaceholder API integration
+- [ ] Replace JSONPlaceholder with real backend (Strapi)
+- [ ] Dark mode
+- [ ] User profile page
+- [ ] User avatar upload
+- [ ] Pagination
+- [ ] Search & filter
+- [ ] Favorite / bookmark posts
+- [ ] Comments section
+- [ ] Unit tests
+- [ ] E2E tests with Playwright
+- [ ] PWA support
+
+---
+
+## License
+
+MIT
