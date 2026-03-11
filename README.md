@@ -47,6 +47,16 @@ The project is optimized for Vercel with a fully automated CI/CD pipeline:
 
 Production Triggers: Merges to the main branch trigger a production build and deployment.
 
+```mermaid
+flowchart TD
+    Dev[Developer] -->|git push| GH[GitHub Repository]
+    GH -->|triggers| VC[Vercel CI/CD]
+    VC -->|build success| APP[🌐 Live Vue.js 3 App on Vercel]
+    VC -->|build fails| FAIL[❌ Build Failed]
+    FAIL -->|notify| Dev
+
+```
+
 ### Firebase Authentication
 
 This project uses Firebase Auth for secure user management.
@@ -55,25 +65,21 @@ Session Persistence: Configured to maintain user state across browser refreshes 
 
 ```mermaid
 flowchart TD
-    Dev[Developer] -->|git push| GH[GitHub Repository]
-    GH -->|trigger| VC[Vercel CI/CD]
-    VC -->|build & deploy| App[Vue.js 3 App on Vercel]
+    Data[Data source JSONPlaceholder] -->|Fetch| Site[🌐 Live Website Vue]
+    Site -->|Fetch| Data
 
-    User[User] -->|visit site| App
-    App -->|login/register form| FE[Firebase Auth]
-    FE -->|email/password check| FB[(Firebase)]
-    FB -->|token / error| FE
-    FE -->|JWT token| App
-    App -->|authenticated| Dashboard[Protected Routes]
-    App -->|auth failed| Login[Login Page]
+    Site --> Marketing[📢 Marketing Pages]
+    Site --> Protected[🔒 Protected Pages]
 
-    subgraph Vercel
-        VC
-        App
-    end
+    Protected --> Login[🔑 Login]
+    Protected --> Register[📝 Register]
 
-    subgraph Firebase
-        FE
-        FB
-    end
+    Login --> FB[(Firebase Auth)]
+    Register -->|Verify Email| FB
+
+    FB -->|Success| JWT[🎫 JWT Token]
+    FB -->|Fail| Login
+
+    JWT --> Protected
+
 ```
