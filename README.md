@@ -88,10 +88,10 @@ The project is optimized for Vercel with a fully automated CI/CD pipeline. Merge
 
 ```mermaid
 flowchart TD
-    Dev[👨‍💻 Developer] -->|git push| GH[GitHub Repository]
+    Dev[ Developer] -->|git push| GH[GitHub Repository]
     GH -->|triggers| VC[Vercel CI/CD]
-    VC -->|build success| APP[🌐 Live Vue.js 3 App on Vercel]
-    VC -->|build fails| FAIL[❌ Build Failed]
+    VC -->|build success| APP[ Live Vue.js 3 App on Vercel]
+    VC -->|build fails| FAIL[ Build Failed]
     FAIL -->|notify| Dev
 ```
 
@@ -103,26 +103,35 @@ This project uses Firebase Auth for secure user management. Session state is per
 
 ```mermaid
 flowchart TD
-    User[👤 User] --> Site[🌐 Live Website]
+    User[User]
+    App[Web App JavaScript + Firebase SDK]
+    Browser[HTTP Client]
+    Directive{Register or Login?}
+    Register[createUserWithEmailAndPassword]
+    Login[signInWithEmailAndPassword]
+    Firebase@{shape: subproc, label: "Firebase Authentication Server"}
+    DB[(Firebase User Database)]
+    Response[Return idToken + refreshToken]
+    Store[HTTP Client stores auth session]
+    LU[Logged-in User]
 
-    Site --> Marketing[📢 Marketing Pages]
-    Site --> Protected[🔒 Protected Pages]
+    User -->|Enter credentials| App
+    App -->|Submit form| Browser
+    Browser --> Directive
 
-    Protected --> Login[🔑 Login]
-    Protected --> Register[📝 Register]
+    Directive -->|Register| Register
+    Directive -->|Login| Login
 
-    Login --> FB[(Firebase Auth)]
-    Register -->|Verify Email| FB
+    Register --> Firebase
+    Login --> Firebase
 
-    FB -->|Success| JWT[🎫 JWT Token 1hr]
-    FB -->|Fail| Login
-
-    JWT --> Protected
-    JWT -->|expires| RT[🔄 Refresh Token]
-    RT -->|silent refresh| JWT
+    Firebase -->|Create or validate user| DB
+    DB -->|Success| Firebase
+    Firebase --> Response
+    Response --> Browser
+    Browser --> Store
+    Store --> LU
 ```
-
----
 
 ## Roadmap
 
